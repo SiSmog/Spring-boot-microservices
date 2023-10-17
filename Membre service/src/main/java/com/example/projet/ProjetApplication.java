@@ -12,7 +12,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import java.util.Date;
 
 @SpringBootApplication
-public class ProjetApplication implements CommandLineRunner {
+public class ProjetApplication  {
 
     @Autowired
     MembreDao membreDao;
@@ -21,21 +21,5 @@ public class ProjetApplication implements CommandLineRunner {
         SpringApplication.run(ProjetApplication.class, args);
     }
 
-    @Override
-    public void run(String... args) throws Exception {
-        Etudiant etd1 = Etudiant.builder()
-                .cin("123456")
-                .dateInscription(new Date())
-                .dateNaissance(new Date())
-                .diplome("mastère")
-                .email("etd1@gmail.com")
-                .password("pass1")
-                .cv("cv1")
-                .nom("abid")
-                .prenom("youssef")
-                .sujet("blockchain")
-                .build();
 
-        membreDao.save(etd1);
-    }
 }
