@@ -1,9 +1,11 @@
 package com.example.projet.entities;
 
+import com.example.projet.beans.PublicationBean;
 import jakarta.persistence.*;
 import lombok.*;
 
 import java.io.Serializable;
+import java.util.Collection;
 import java.util.Date;
 
 @Entity
@@ -34,4 +36,7 @@ public abstract class Membre implements Serializable {
     private String email;
     @NonNull
     private String password;
+
+    @Transient
+    Collection<PublicationBean> pubs;
 }

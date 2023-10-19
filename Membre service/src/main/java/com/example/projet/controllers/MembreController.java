@@ -3,6 +3,7 @@ package com.example.projet.controllers;
 import com.example.projet.entities.EnseignantChercheur;
 import com.example.projet.entities.Etudiant;
 import com.example.projet.entities.Membre;
+import com.example.projet.entities.Membre_Pub_Id;
 import com.example.projet.services.MembreService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -14,7 +15,22 @@ public class MembreController {
     @Autowired
     MembreService membreService;
 
-    @GetMapping("/membre/{id}")
+    @GetMapping("/membre")
+    public List<Membre> findAll(){
+        return membreService.findAll();
+    }
+    @PostMapping("/publication")
+    public void affecterPublication(@RequestBody Membre_Pub_Id membrePubId){
+        membreService.affecterauteurTopublication(membrePubId.getAuteur_id(), membrePubId.getPublication_id());
+    }
+    @GetMapping("/fullmember/{id}")
+    public Membre findAFullMember(@PathVariable(name="id") Long id)
+    {
+        Membre mbr=membreService.findMember(id);
+        mbr.setPubs(membreService.findPublicationparauteur(id));
+
+        return mbr;
+    }    @GetMapping("/membre/{id}")
     public Membre find(@PathVariable Long id){
         return membreService.findMember(id);
     }

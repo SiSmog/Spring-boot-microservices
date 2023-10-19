@@ -1,16 +1,14 @@
-package com.example.publicationservice.entities;
+package com.example.projet.beans;
 
-import jakarta.persistence.*;
-import lombok.*;
+
+import lombok.Builder;
+import lombok.Data;
+import lombok.NonNull;
 
 import java.util.Date;
 
-@Entity @DiscriminatorValue("etd")
-@Getter
-@Setter
-@NoArgsConstructor
-public class Publication {
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+@Data
+public class PublicationBean {
     Long id ;
 
     @NonNull
@@ -23,9 +21,9 @@ public class Publication {
     private String lien;
     @NonNull
     private String sourcePdf;
-    @NonNull
+
     @Builder
-    public Publication(Long id, @NonNull Date date, @NonNull String type, @NonNull String titre, @NonNull String lien, @NonNull String sourcePdf) {
+    public PublicationBean(Long id, @NonNull Date date, @NonNull String type, @NonNull String titre, @NonNull String lien, @NonNull String sourcePdf) {
         this.id = id;
         this.date = date;
         this.type = type;
